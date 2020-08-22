@@ -1,12 +1,13 @@
-FROM alpine:3.8
+FROM alpine:3.10
 
 RUN mkdir /etc/default && mkdir /etc/mopidy
 
 RUN apk update \
   && apk upgrade \
-  && apk add --no-cache \
-  --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-  mopidy
+  && apk add mopidy
+#  && apk add --no-cache \
+#  --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+#  mopidy
 
 # I cant explain why, but to me it seems
 # I have less pause in streams if I
@@ -25,6 +26,10 @@ RUN apk add --no-cache \
 
 ## Install extensions
 RUN pip install -U Mopidy-MusicBox-Webclient
+
+COPY mopidy.patch /root/mopidy.patch
+RUN cd /usr/lib/python2.7/site-packages/mopidy \
+  && patch -p 2 < /root/mopidy.patch
 
 ##  Copy fallback configuration.
 COPY mopidy.conf /etc/default/mopidy.conf

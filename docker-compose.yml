@@ -34,19 +34,19 @@ services:
     network_mode: "bridge"
     restart: unless-stopped
 
-  spotify:
-    image: audiostation/spotify:latest
-    # host mode is needed for Spotifyd advertisement
-    network_mode: "host"
-    depends_on:
-      - snapserver
-    volumes:
-      # The volume with the sharesound fifo for snapcast to work
-      - /tmp/sharesound:/tmp/sharesound
-      # - /usr/share/alsa:/usr/share/alsa
-    #devices:
-    #  - "/dev/snd/:/dev/snd/"
-    restart: unless-stopped
+#  spotify:
+#    image: audiostation/spotify:latest
+#    # host mode is needed for Spotifyd advertisement
+#    network_mode: "host"
+#    depends_on:
+#      - snapserver
+#    volumes:
+#      # The volume with the sharesound fifo for snapcast to work
+#      - /tmp/sharesound:/tmp/sharesound
+#      # - /usr/share/alsa:/usr/share/alsa
+#    #devices:
+#    #  - "/dev/snd/:/dev/snd/"
+#    restart: unless-stopped
 
   #upmpdcli:
   #  image: audiostation/upmpdcli:latest
@@ -69,14 +69,14 @@ services:
 
 
   # Turn this on if you have no other snapcast client on the server
-  snapclient:
-    image: audiostation/snapcast:latest
-#    links:
-#      - snapserver:snapserverhost
-    depends_on:
-      - snapserver
-    devices:
-      - "/dev/snd/:/dev/snd/"
-    command: "snapclient -h soulcatcher"
-    network_mode: "host"
-    restart: unless-stopped
+#  snapclient:
+#    image: audiostation/snapcast:latest
+#    #links:
+#    #  - snapserver:snapserverhost
+#    depends_on:
+#      - snapserver
+#    devices:
+#      - "/dev/snd/:/dev/snd/"
+#    command: "snapclient -h soulcatcher"
+#    network_mode: "host"
+#    restart: unless-stopped

@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.18
 
 RUN mkdir /etc/default && mkdir /etc/mopidy
 
@@ -27,9 +27,9 @@ RUN apk add --no-cache \
 ## Install extensions
 RUN pip install -U Mopidy-MusicBox-Webclient
 
-COPY mopidy.patch /root/mopidy.patch
-RUN cd /usr/lib/python2.7/site-packages/mopidy \
-  && patch -p 2 < /root/mopidy.patch
+#COPY mopidy.patch /root/mopidy.patch
+#RUN cd /usr/lib/python2.7/site-packages/mopidy \
+#  && patch -p 2 < /root/mopidy.patch
 
 ##  Copy fallback configuration.
 COPY mopidy.conf /etc/default/mopidy.conf

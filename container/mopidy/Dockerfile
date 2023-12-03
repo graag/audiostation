@@ -25,7 +25,9 @@ RUN apk add --no-cache \
   && pip install --upgrade pip
 
 ## Install extensions
-RUN pip install -U Mopidy-MusicBox-Webclient
+RUN pip install -U Mopidy-MusicBox-Webclient \
+  && pip install -U Mopidy-MPD \
+  && pip install -U Mopidy-Local
 
 #COPY mopidy.patch /root/mopidy.patch
 #RUN cd /usr/lib/python2.7/site-packages/mopidy \

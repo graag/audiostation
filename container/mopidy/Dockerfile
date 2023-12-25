@@ -29,9 +29,8 @@ RUN pip install -U Mopidy-MusicBox-Webclient \
   && pip install -U Mopidy-MPD \
   && pip install -U Mopidy-Local
 
-#COPY mopidy.patch /root/mopidy.patch
-#RUN cd /usr/lib/python2.7/site-packages/mopidy \
-#  && patch -p 2 < /root/mopidy.patch
+# Workaround for GStreamer error
+COPY mopidy/mopidy/audio/actor.py /usr/lib/python3.11/site-packages/mopidy/audio/actor.py
 
 ##  Copy fallback configuration.
 COPY mopidy.conf /etc/default/mopidy.conf

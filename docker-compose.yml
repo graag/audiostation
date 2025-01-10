@@ -28,7 +28,7 @@ services:
       - /tmp/sharesound:/tmp/sharesound
       # Makes mopidy data persistent
       - mopidy_data:/data
-      - /srv/Muzyka:/music:ro
+      - /khatovar/public/Muzyka:/music:ro
       # Add local music folder
       # local_music_folder:/music:ro
     network_mode: "bridge"
